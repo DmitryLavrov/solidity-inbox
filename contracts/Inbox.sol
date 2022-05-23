@@ -3,6 +3,7 @@ pragma solidity <0.9;
 
 contract Inbox {
     string public message;
+    mapping(address => bool) public approvers;
 
     constructor(string memory initialMessage) {
         message = initialMessage;
@@ -10,5 +11,9 @@ contract Inbox {
 
     function setMessage(string memory newMessage) public {
         message = newMessage;
+    }
+
+    function setApprover(address user) public {
+        approvers[user] = true;
     }
 }

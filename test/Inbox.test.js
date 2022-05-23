@@ -33,4 +33,10 @@ describe('Inbox', () => {
     const message = await inbox.methods.message().call()
     assert.strictEqual(message, 'bye')
   })
+
+  it('can change mapping variable', async () => {
+    await inbox.methods.setApprover(accounts[0]).send({from: accounts[0]})
+    const result = await inbox.methods.approvers(accounts[0]).call()
+    assert.strictEqual(result, true)
+  })
 })
